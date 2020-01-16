@@ -39,7 +39,7 @@ const ListaRestaurantes = (props) => {
           </Typography>
         </CardContent>
         <CardContent>
-          <Lista/>
+          <Lista />
         </CardContent>
       </Card>
     </div>

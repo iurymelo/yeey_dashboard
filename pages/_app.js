@@ -1,9 +1,31 @@
 import React from 'react'
 import Layout from "../components/Layout/Layout";
-import { withRouter } from 'next/router'
+import { Provider } from 'react-redux';
+import App, { Container } from 'next/app';
+import withRedux from 'next-redux-wrapper';
+import { initStore } from '../redux/stores'
 
-function App({ Component, pageProps, router }) {
-  return <Layout pathName = {router.pathname}><Component {...pageProps} /></Layout>
- }
+export default withRedux(initStore, { debug: false })(
+  class yeeydash extends App {
+    static async getInitialProps({ Component, ctx }) {
+      return {
+        pageProps: {
+          ...(Component.getInitialProps
+            ? await Component.getInitialProps(ctx)
+            : {})
+        }
+      };
+    }
 
-export default App;
+    render() {
+      const { Component, pageProps, router, store } = this.props;
+      return (
+        <Layout pathName = {router.pathname}>
+          <Provider store={store}>
+            <Component {...pageProps} />
+          </Provider>
+        </Layout>
+      );
+    }
+  }
+);

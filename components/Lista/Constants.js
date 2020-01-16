@@ -1,9 +1,9 @@
 export const columns = [
-  { id: 'nome', label: 'Nome', },
-  { id: 'id', label: '#ID',align: 'right'  },
-  { id: 'plano', label: 'Plano', align: 'right' },
-  {},
-  {}
+  { id: 100, label: 'Nome' },
+  { id: 110, label: '#ID', align: 'right'  },
+  { id: 120, label: 'Plano', align: 'right' },
+  {id: 121},
+  {id: 122}
 ];
 
 function createData(nome, id, plano) {
