@@ -1,0 +1,12 @@
+.ItemListText {
+    font-family: "Roboto";
+    font-size: 1em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.83);
+    left: 0;
+
+}
+
+.selecionado{
+    color: #2196F3;
+}
