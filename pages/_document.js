@@ -5,7 +5,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 const theme = responsiveFontSizes(createMuiTheme())
 
-class MyDocument extends Document {
+class yeey_dash extends Document {
   render() {
     return (
       <Html>
@@ -41,25 +41,25 @@ class MyDocument extends Document {
           </style>
         </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     )
   }
 }
 
-MyDocument.getInitialProps = async ctx => {
+yeey_dash.getInitialProps = async ctx => {
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets()
-  const originalRenderPage = ctx.renderPage
+  const sheets = new ServerStyleSheets();
+  const originalRenderPage = ctx.renderPage;
 
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: App => props => sheets.collect(<App {...props} />)
-    })
+    });
 
-  const initialProps = await Document.getInitialProps(ctx)
+  const initialProps = await Document.getInitialProps(ctx);
 
   return {
     ...initialProps,
@@ -71,6 +71,6 @@ MyDocument.getInitialProps = async ctx => {
       </React.Fragment>
     ]
   }
-}
+};
 
-export default MyDocument
+export default yeey_dash

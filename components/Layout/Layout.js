@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Aux from "../hoc/Auxiliary";
+import Aux from "../../hoc/Auxiliary";
 import SideDrawer from "./Navigation/SideDrawer/SideDrawer";
 import Router from 'next/router';
 

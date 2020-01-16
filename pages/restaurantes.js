@@ -6,7 +6,7 @@ import ListaRestaurantes from "../components/ListaRestaurantes/ListaRestaurantes
 
 class Restaurantes extends Component {
   addRestauranteHandler = () => {
-    Router.push('/restaurante/novo')
+    Router.push('/restaurantes/novo')
   };
 
   render() {

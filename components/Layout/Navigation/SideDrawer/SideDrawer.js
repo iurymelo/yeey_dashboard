@@ -55,7 +55,17 @@ function SideDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [selectedIndex, setSelectedIndex] = React.useState(props.pathName);
+  // garante que o menu continue marcado mesmo quando entra em subpáginas.
+  let pathName = props.pathName;
+  let paths = pathName.split('/')
+  if(pathName === '/') {
+    pathName = '/'
+  } else {
+    pathName = '/'+paths[1];
+  };
+  console.log(pathName);
+
+  const [selectedIndex, setSelectedIndex] = React.useState(pathName);
 
   theme.palette.action.hover = "#E3F2FD";
   theme.palette.action.selected = "#E3F2FD";
@@ -84,7 +94,7 @@ function SideDrawer(props) {
           >
           <ListItemIcon>{(selectedIndex === obj.url) ? obj.iconSecondary : obj.iconPrimary}</ListItemIcon>
 
-          <ListItemText text={obj.nome} selecionado={props.pathName === obj.url} />
+          <ListItemText text={obj.nome} selecionado={pathName === obj.url} />
           </ListItem>
         ))}
 
@@ -98,7 +108,7 @@ function SideDrawer(props) {
           >
             <ListItemIcon>{(selectedIndex === obj.url) ? obj.iconSecondary : obj.iconPrimary}</ListItemIcon>
 
-            <ListItemText text={obj.nome} selecionado={props.pathName === obj.url} />
+            <ListItemText text={obj.nome} selecionado={pathName === obj.url} />
           </ListItem>
         ))}
 
