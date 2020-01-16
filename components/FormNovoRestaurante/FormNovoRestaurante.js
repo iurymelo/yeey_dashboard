@@ -4,6 +4,7 @@ import {Button, Container} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
+import axios from '../../axios-config'
 
 import {required, cepValidate, passValidate,
   minLength, cnpjValidate, emailValidate, phoneValidate} from "../Validators/Validators";
@@ -11,7 +12,33 @@ import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
 
 
 const onSubmit = values => {
-  console.log(JSON.stringify(values))
+  const Loja = {
+    id: values.cnpj.replace(/[^\d]+/g, ''),
+    nome: values.nomeFantasia,
+    DadosCadastrais: {
+      razaoSocial: values.razaoSocial,
+      cnpj: values.cnpj,
+      inscricaoEstadual: values.inscricaoEstadual,
+      nomeFantasia: values.nomeFantasia,
+      endereco: {
+        endereco: values.endereco,
+        bairro: values.bairro,
+        cidade: values.cidade,
+        estado: values.estado,
+        cep: values.cep,
+        telefonePrimario: values.telefonePrimario,
+        telefoneSecundario: values.telefoneSecundario,
+        email: values.email,
+      },
+    }
+  };
+  axios.post('/lojas.json', Loja)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error=> {
+      console.log(error)
+    })
 };
 
 const FormNovoRestaurante = ({handleSubmit, valid}) => {
