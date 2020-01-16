@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
-
+import FormNovoRestaurante from "../../components/FormNovoRestaurante/FormNovoRestaurante";
 
 class NovoRestaurante extends Component {
   render() {
-    return (
+    return(
       <div>
-        <p>Novo Restaurante</p>
+        <FormNovoRestaurante />
       </div>
     )
   }
 }
 
-export default NovoRestaurante;
+export default NovoRestaurante
