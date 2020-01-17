@@ -4,11 +4,14 @@ import {Button, Container} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
+import Router from 'next/router'
+
 import axios from '../../axios-config'
 
-import {required, cepValidate, passValidate,
+import {required, cepValidate, passValidate, cpfValidate,
   minLength, cnpjValidate, emailValidate, phoneValidate} from "../Validators/Validators";
 import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
+import {blue} from "@material-ui/core/colors";
 
 
 const onSubmit = values => {
@@ -30,11 +33,19 @@ const onSubmit = values => {
         telefoneSecundario: values.telefoneSecundario,
         email: values.email,
       },
+    },
+    Responsavel: {
+      username: values.user,
+      userId: '',
+      nome: values.nomeCompleto,
+      cpf: values.cpf,
     }
   };
+
   axios.post('/lojas.json', Loja)
     .then(response => {
       console.log(response);
+      Router.push('/restaurantes')
     })
     .catch(error=> {
       console.log(error)
@@ -115,7 +126,7 @@ const FormNovoRestaurante = ({handleSubmit, valid}) => {
               </Grid>
             </Grid>
           </div>
-          <div style={{paddingTop: '20px'}}>
+          <div style={{paddingTop: '10px'}}>
             <Typography style={{fontSize: 14, padding: '10px'}}>
               Informações de Contato e Endereço
             </Typography>
@@ -193,9 +204,41 @@ const FormNovoRestaurante = ({handleSubmit, valid}) => {
               </Grid>
             </Grid>
           </div>
-          <FormControl>
-            <Button disabled={!valid} type='submit'>Submit</Button>
-          </FormControl>
+          <div>
+            <Typography style={{fontSize: 14, padding: '10px'}}>
+              Informações do Responsável
+            </Typography>
+            <Grid container spacing={3}>
+              <br/>
+              <Grid item xs={8}>
+                <Field
+                  name='nomeCompleto'
+                  label='Nome Completo'
+                  component={renderInput}
+                  validate={[required, minLength]}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Field
+                  name='cpf'
+                  label='CPF'
+                  defaultValue='92125198061'
+                  component={renderInput}
+                  validate={[required]}
+                />
+              </Grid>
+            </Grid>
+          </div>
+
+            <div style={{display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'right', paddingTop: '20px'}}>
+              <FormControl>
+              <Button size='large' style={{color: '#F33A21'}} onClick={() => Router.push('/restaurantes')}>CANCELAR</Button>
+              </FormControl>
+              <FormControl>
+              <Button size='large' disabled={!valid} style={valid ? {color: blue[500]} : null } type='submit'>CRIAR</Button>
+              </FormControl>
+            </div>
+
         </form>
       </Container>
     </div>

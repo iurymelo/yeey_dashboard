@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -30,7 +30,7 @@ const useStyles1 = makeStyles(theme => ({
 function TablePaginationActions(props) {
   const classes = useStyles1();
   const theme = useTheme();
-  const { count, page, rowsPerPage, onChangePage } = props;
+  const {count, page, rowsPerPage, onChangePage} = props;
 
   const handleFirstPageButtonClick = event => {
     onChangePage(event, 0);
@@ -55,24 +55,24 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === 'rtl' ? <LastPageIcon/> : <FirstPageIcon/>}
       </IconButton>
       <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === 'rtl' ? <KeyboardArrowRight/> : <KeyboardArrowLeft/>}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft/> : <KeyboardArrowRight/>}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === 'rtl' ? <FirstPageIcon/> : <LastPageIcon/>}
       </IconButton>
     </div>
   );
@@ -87,8 +87,12 @@ TablePaginationActions.propTypes = {
 
 
 const useStyles2 = makeStyles({
+  root: {
+    width: '100%',
+  },
   table: {
     minWidth: 500,
+    width: '100%',
   },
 });
 
@@ -111,64 +115,64 @@ const Lista = (props) => {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            {columns.map(column => (
-              <TableCell key={column.id}
-                align={column.align}
-                style={{ minWidth: column.minWidth }}
-              >
-                {column.label}
-              </TableCell>
+      <TableContainer component={Paper}>
+        <Table className={classes.root} aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              {columns.map(column => (
+                <TableCell key={column.id}
+                           align={column.align}
+                           style={{minWidth: column.minWidth}}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : rows
+            ).map(row => (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  {row.nome}
+                </TableCell>
+                <TableCell align="right">{row.id}</TableCell>
+                <TableCell align="right">{row.plano}</TableCell>
+                <TableCell align="right"><Button style={{color: blue[500]}}>ALTERAR</Button></TableCell>
+                <TableCell align="right"><Button style={{color: '#F33A21'}}>EXCLUIR</Button></TableCell>
+              </TableRow>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-          ).map(row => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.nome}
-              </TableCell>
-              <TableCell align="right">{row.id}</TableCell>
-              <TableCell align="right">{row.plano}</TableCell>
-              <TableCell align="right"><Button style={{color: blue[500]}}>ALTERAR</Button></TableCell>
-              <TableCell align="right"><Button style={{color: '#F33A21'}}>EXCLUIR</Button></TableCell>
-            </TableRow>
-          ))}
 
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+            {emptyRows > 0 && (
+              <TableRow style={{height: 53 * emptyRows}}>
+                <TableCell colSpan={6}/>
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, {label: 'Tudo', value: -1}]}
+                labelRowsPerPage='Itens por página'
+                colSpan={3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                labelDisplayedRows={({from, to, count}) => `${from}-${to} de ${count}`}
+                SelectProps={{
+                  inputProps: {'aria-label': 'rows per page'},
+                  native: true,
+                }}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'Tudo', value: -1 }]}
-              labelRowsPerPage = 'Itens por página'
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
-              SelectProps={{
-                inputProps: { 'aria-label': 'rows per page' },
-                native: true,
-              }}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
   );
 
 };

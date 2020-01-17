@@ -63,7 +63,6 @@ function SideDrawer(props) {
   } else {
     pathName = '/'+paths[1];
   };
-  console.log(pathName);
 
   const [selectedIndex, setSelectedIndex] = React.useState(pathName);
 

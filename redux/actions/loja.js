@@ -1,8 +1,6 @@
 import axios from '../../axios-config'
 import * as actionTypes from '../actions/actionTypes'
 
-
-
 export const cadastroLojaSuccess = ( formData ) => {
   return {
     type: actionTypes.CADASTRO_LOJA_SUCCESS,

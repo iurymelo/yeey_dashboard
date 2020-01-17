@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import classDiv from './ListaRestaurantes.css';
 import Lista from "../Lista/Lista";
 
 const useStyles = makeStyles({
@@ -29,7 +28,11 @@ const ListaRestaurantes = (props) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return(
-    <div className={classDiv.ListaRestaurantes}>
+    <div style={{
+      width: '96%',
+      height: '100%',
+      paddingBottom: '40px'
+    }}>
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
