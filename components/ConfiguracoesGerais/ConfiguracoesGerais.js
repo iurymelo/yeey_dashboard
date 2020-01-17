@@ -7,9 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import {blue} from "@material-ui/core/colors";
 
-
-import classDiv from './ConfiguracoesGerais.css';
-
 const useStyles = makeStyles({
   card: {
     minWidth: '200',
@@ -32,13 +29,20 @@ const ConfiguracoesGerais = (props) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return(
-    <div className={classDiv.ConfiguracoesGerais}>
+    <div style={{
+      width: '96%',
+      paddingBottom: '40px'
+    }}>
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           Configurações Gerais
         </Typography>
-        <div className={classDiv.CardBotao} >
+        <div style={{
+          width: '135px',
+          height: '150px',
+          margin: '20px',
+        }} >
           <Card className={classes.card} style={{backgroundColor: blue[500]}} onClick={props.addRestaurante}>
             <CardActionArea style={{alignContent:'center', textAlign: 'center', color: 'white',}}>
               <CardContent>
