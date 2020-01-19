@@ -108,9 +108,7 @@ const Lista = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  console.log(listaRestaurantes.map((obj, index) => {
-    console.log(obj.id)
-  }));
+
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
