@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
-import { initStore } from '../redux/stores'
+import { initStore } from '../redux'
 
 export default withRedux(initStore, { debug: false })(
   class yeeydash extends App {

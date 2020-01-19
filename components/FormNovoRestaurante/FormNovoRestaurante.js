@@ -4,14 +4,13 @@ import {Button, Container} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
-import Router from 'next/router'
-
-import axios from '../../axios-config'
+import Router from 'next/router';
 
 import {required, cepValidate, passValidate, cpfValidate,
   minLength, cnpjValidate, emailValidate, phoneValidate} from "../Validators/Validators";
 import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
 import {blue} from "@material-ui/core/colors";
+import axios from "../../axios-config";
 
 
 const onSubmit = values => {
@@ -44,15 +43,16 @@ const onSubmit = values => {
 
   axios.post('/lojas.json', Loja)
     .then(response => {
-      console.log(response);
+      alert('Cadastro Criado com Sucesso!');
       Router.push('/restaurantes')
     })
     .catch(error=> {
-      console.log(error)
+      alert(error)
     })
 };
 
-const FormNovoRestaurante = ({handleSubmit, valid}) => {
+const FormNovoRestaurante = ({handleSubmit, valid }) => {
+
   return (
     <div>
       <Typography style={{fontSize: 18, paddingBottom: '10px'}}>
@@ -102,8 +102,7 @@ const FormNovoRestaurante = ({handleSubmit, valid}) => {
                   name='cnpj'
                   label='CNPJ'
                   component={renderInput}
-                  validate={[cnpjValidate, required]}
-                  defaultValue = '89.025.696/0001-14'
+                  validate={[cnpjValidate]}
                 />
                 {/*CNPJ VALIDO: 89.025.696/0001-14*/}
               </Grid>

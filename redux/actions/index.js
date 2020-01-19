@@ -1,0 +1,3 @@
+export {
+  fetchLojasStart
+} from './loja'

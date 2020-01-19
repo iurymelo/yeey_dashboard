@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
 import { reducer as formReducer } from 'redux-form';
+import lojaReducer from "./lojaReducer";
 
 const rootReducer = combineReducers({
-  authentication: authReducer,
+  loja: lojaReducer,
   form: formReducer,
 });
 

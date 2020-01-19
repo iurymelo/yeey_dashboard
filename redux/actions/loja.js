@@ -1,36 +1,40 @@
 import axios from '../../axios-config'
 import * as actionTypes from '../actions/actionTypes'
+import Router from "next/router";
 
-export const cadastroLojaSuccess = ( formData ) => {
+export const fetchLojasFail = () => {
   return {
-    type: actionTypes.CADASTRO_LOJA_SUCCESS,
+    type: actionTypes.FETCH_LOJAS_FAIL,
+  };
+};
+
+export const fetchLojaSuccess = (formData) => {
+  return {
+    type: actionTypes.FETCH_LOJAS_SUCCESS,
     formData: formData,
-  };
+  }
 };
 
-
-export const cadastroLojaStart = () => {
-  return {
-    type: actionTypes.CADASTRO_LOJA_START,
-  };
-};
-
-export const cadastroLojaFail = ( error ) => {
-  return {
-    type: actionTypes.CADASTRO_LOJA_FAIL,
-    error: error,
-  };
-}
-
-export const cadastroLoja = ( formData ) => {
+export const fetchLojasStart = () => {
   return dispatch => {
-    dispatch( cadastroLojaStart() );
-    axios.post( '/orders.json' + formData )
-      .then( response => {
-        dispatch( cadastroLojaSuccess( response.data.name, formData ) );
-      } )
-      .catch( error => {
-        dispatch( purchaseBurgerFail( error ) );
-      } );
-  };
+    axios.get('/lojas.json')
+      .then(res => {
+        console.log(res);
+          const fetchedLojas = [];
+          for (let key in res.data) {
+            fetchedLojas.push({
+              ...res.data[key],
+              id: key
+            });
+          }
+          console.log('LOJAS FETCHED!!')
+          console.log(fetchedLojas);
+          dispatch(fetchLojaSuccess(fetchedLojas));
+        }
+      )
+      .catch(err => {
+        console.log(err)
+        dispatch(fetchLojasFail());
+      })
+  }
 };

@@ -6,7 +6,7 @@ export const columns = [
   {id: 122}
 ];
 
-function createData(nome, id, plano) {
+export function createData(nome, id, plano) {
   return { nome, id, plano };
 }
 

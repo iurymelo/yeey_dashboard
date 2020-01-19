@@ -6,7 +6,7 @@ class NovoRestaurante extends Component {
   render() {
     return(
       <div>
-        <FormNovoRestaurante/>
+        <FormNovoRestaurante />
       </div>
     )
   }
