@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Router from 'next/router'
 import {connect} from 'react-redux'
-import ConfiguracoesGerais from "../components/ConfiguracoesGerais/ConfiguracoesGerais";
-import ListaRestaurantes from "../components/ListaRestaurantes/ListaRestaurantes";
-import {columns, createData} from '../components/Lista/Constants'
-import * as actions from '../redux/actions';
+import ConfiguracoesGerais from "../../components/ConfiguracoesGerais/ConfiguracoesGerais";
+import ListaRestaurantes from "../../components/ListaRestaurantes/ListaRestaurantes";
+import {columns, createData} from '../../components/Lista/Constants'
+import * as actions from '../../redux/actions';
 
 
-class Restaurantes extends Component {
+class Index extends Component {
 
   componentDidMount() {
     this.props.onFetchLojas();
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Restaurantes);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

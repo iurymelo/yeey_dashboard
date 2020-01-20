@@ -12,13 +12,6 @@ import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
 import {blue} from "@material-ui/core/colors";
 import axios from "../../axios-config";
 
-const datestamp = () => {
-  const date = new Date();
-  const mes = date.getMonth() + 1;
-  const dataAtual= date.getDate() + '/' + mes + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
-  return dataAtual;
-};
-
 const onSubmit = values => {
 
   const Loja = {
@@ -32,15 +25,15 @@ const onSubmit = values => {
       cnpj: values.cnpj,
       inscricaoEstadual: values.inscricaoEstadual,
       nomeFantasia: values.nomeFantasia,
-      endereco: {
+      telefonePrimario: values.telefonePrimario,
+      telefoneSecundario: values.telefoneSecundario,
+      email: values.email,
+      Endereco: {
         endereco: values.endereco,
         bairro: values.bairro,
         cidade: values.cidade,
         estado: values.estado,
         cep: values.cep,
-        telefonePrimario: values.telefonePrimario,
-        telefoneSecundario: values.telefoneSecundario,
-        email: values.email,
       },
     },
     Responsavel: {
@@ -189,7 +182,7 @@ const FormNovoRestaurante = ({handleSubmit, valid }) => {
               </Grid>
               <Grid item xs={4}>
                 <Field
-                  name='telefoneprimario'
+                  name='telefonePrimario'
                   label='Telefone para Contato'
                   component={renderInput}
                   validate={[phoneValidate]}
@@ -197,7 +190,7 @@ const FormNovoRestaurante = ({handleSubmit, valid }) => {
               </Grid>
               <Grid item xs={4}>
                 <Field
-                  name='celular'
+                  name='telefoneSecundario'
                   label='Telefone Celular'
                   component={renderInput}
                   validate={[phoneValidate]}
