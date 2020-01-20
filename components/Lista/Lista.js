@@ -17,9 +17,9 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from "@material-ui/core/TableHead";
 import Button from "@material-ui/core/Button";
 import {blue} from "@material-ui/core/colors";
-
-import {columns, rows} from './Constants'
-
+import axios from '../../axios-config';
+import {columns, rows} from './Constants';
+import Router from 'next/router';
 
 
 const useStyles1 = makeStyles(theme => ({
@@ -120,6 +120,21 @@ const Lista = (props) => {
     setPage(0);
   };
 
+  const excluiLojaHandler = (id) => {
+    const param = '/lojas/' + id + '.json';
+    axios.patch(param, {inactive: true, deleted: true})
+      .then(res => {
+          console.log(res);
+          alert('Restaurante excluido com sucesso!')
+          Router.reload();
+        }
+      )
+      .catch(err => {
+        console.log(err)
+      });
+
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.root} aria-label="custom pagination table">
@@ -147,7 +162,7 @@ const Lista = (props) => {
               <TableCell align="right">{restaurante.id}</TableCell>
               <TableCell align="right">{'Tester'}</TableCell>
               <TableCell align="right"><Button style={{color: blue[500]}}>ALTERAR</Button></TableCell>
-              <TableCell align="right"><Button style={{color: '#F33A21'}}>EXCLUIR</Button></TableCell>
+              <TableCell align="right"><Button style={{color: '#F33A21'}} onClick={(id) => excluiLojaHandler(restaurante.id)}>EXCLUIR</Button></TableCell>
             </TableRow>
           ))}
 

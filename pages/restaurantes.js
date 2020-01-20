@@ -3,7 +3,6 @@ import Router from 'next/router'
 import {connect} from 'react-redux'
 import ConfiguracoesGerais from "../components/ConfiguracoesGerais/ConfiguracoesGerais";
 import ListaRestaurantes from "../components/ListaRestaurantes/ListaRestaurantes";
-import axios from "../axios-config";
 import {columns, createData} from '../components/Lista/Constants'
 import * as actions from '../redux/actions';
 

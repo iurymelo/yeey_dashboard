@@ -12,10 +12,20 @@ import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
 import {blue} from "@material-ui/core/colors";
 import axios from "../../axios-config";
 
+const datestamp = () => {
+  const date = new Date();
+  const mes = date.getMonth() + 1;
+  const dataAtual= date.getDate() + '/' + mes + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
+  return dataAtual;
+};
 
 const onSubmit = values => {
+
   const Loja = {
-    id: values.cnpj.replace(/[^\d]+/g, ''),
+    deleted: false,
+    inactive: false,
+    creation_date: new Date().getTime(),
+    modification_time: new Date().getTime(),
     nome: values.nomeFantasia,
     DadosCadastrais: {
       razaoSocial: values.razaoSocial,

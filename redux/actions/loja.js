@@ -1,7 +1,6 @@
 import axios from '../../axios-config'
 import * as actionTypes from '../actions/actionTypes'
-import Router from "next/router";
-import {createData} from '../../components/Lista/Constants'
+
 
 export const fetchLojasFail = () => {
   return {
@@ -30,10 +29,12 @@ export const fetchLojas = () => {
       .then(res => {
           const fetchedLojas = [];
           for (let key in res.data) {
-            fetchedLojas.push({
-              ...res.data[key],
-              id: key
-            });
+            if (!res.data[key].deleted) {
+              fetchedLojas.push({
+                ...res.data[key],
+                id: key
+              });
+            }
           }
           dispatch(fetchLojaSuccess(fetchedLojas));
         }
