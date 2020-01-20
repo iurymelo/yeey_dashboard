@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import FormNovoRestaurante from "../../components/Restaurantes/FormNovoRestaurante/FormNovoRestaurante";
+import FormNovoUsuario from "../../components/Usuarios/FormNovoUsuario/FormNovoUsuario";
 
 class NovoRestaurante extends Component {
 
   render() {
     return(
       <div>
-        <FormNovoRestaurante />
+        <FormNovoUsuario />
       </div>
     )
   }

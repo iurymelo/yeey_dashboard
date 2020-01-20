@@ -7,10 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Router from 'next/router';
 
 import {required, cepValidate, passValidate, cpfValidate,
-  minLength, cnpjValidate, emailValidate, phoneValidate} from "../Validators/Validators";
-import {renderInput, renderSelectField} from "../FormComponents/FormComponents";
+  minLength, cnpjValidate, emailValidate, phoneValidate} from "../../Validators/Validators";
+import {renderInput, renderSelectField} from "../../FormComponents/FormComponents";
 import {blue} from "@material-ui/core/colors";
-import axios from "../../axios-config";
+import axios from "../../../axios-config";
 
 const onSubmit = values => {
 

@@ -7,14 +7,17 @@ export const required = value => {
 };
 
 export const minLength = value => {
-  if (value.length < 4) {
-    return 'Mínimo 4 caracteres!';
+  if (value) {
+    if (value.length < 4) {
+      return 'Mínimo 4 caracteres!';
+    }
+    if (value.length > 80) {
+      return 'Nome muito grande!'
+    }
+    return undefined;
   }
-  if (value.length > 80) {
-    return 'Nome muito grande!'
-  }
-  return undefined;
-};
+  ;
+}
 
 export const cnpjValidate = value => {
   if (!value) {
@@ -85,8 +88,8 @@ export const passValidate = value => {
 };
 
 export const cepValidate = value => {
-  if(value){
-    if(!value.match(/^\d{5}-\d{3}$/)){
+  if (value) {
+    if (!value.match(/^\d{5}-\d{3}$/)) {
       return 'CEP inválido';
     } else {
       return undefined;
@@ -95,10 +98,10 @@ export const cepValidate = value => {
 };
 
 export const emailValidate = value => {
-  if(value) {
+  if (value) {
     const email = value;
     email.toLowerCase();
-    if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+    if (!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
       return 'Email inválido!'
     } else {
       return undefined;
@@ -107,25 +110,28 @@ export const emailValidate = value => {
 };
 
 export const cpfValidate = value => {
-  let Soma;
-  let Resto;
-  Soma = 0;
-  const strCPF = value;
-  if (strCPF == "00000000000") return 'CPF Inválido';
-  for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-  Resto = (Soma * 10) % 11;
+  if (value) {
+    let Soma;
+    let Resto;
+    Soma = 0;
+    const strCPF = value;
+    if (strCPF == "00000000000") return 'CPF Inválido';
+    for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
 
-  if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
 
-  if (Resto != parseInt(strCPF.substring(9, 10)) ) return 'CPF Inválido';
+    if (Resto != parseInt(strCPF.substring(9, 10))) return 'CPF Inválido';
 
-  Soma = 0;
+    Soma = 0;
 
-  for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-  Resto = (Soma * 10) % 11;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
 
-  if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
 
-  if (Resto != parseInt(strCPF.substring(10, 11) ) ) return 'CPF Inválido';
-  return undefined;
-};
+    if (Resto != parseInt(strCPF.substring(10, 11))) return 'CPF Inválido';
+    return undefined;
+  }
+  ;
+}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Router from 'next/router'
 import {connect} from 'react-redux'
-import ConfiguracoesGerais from "../../components/ConfiguracoesGerais/ConfiguracoesGerais";
-import ListaRestaurantes from "../../components/ListaRestaurantes/ListaRestaurantes";
+import ConfiguracoesGerais from '../../components/Restaurantes/ConfiguracoesGerais/ConfiguracoesGerais';
+import ListaRestaurantes from "../../components/Restaurantes/ListaRestaurantes/ListaRestaurantes";
 import {columns, createData} from '../../components/Lista/Constants'
 import * as actions from '../../redux/actions';
 
