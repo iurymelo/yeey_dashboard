@@ -43,7 +43,7 @@ const ConfiguracoesGerais = (props) => {
             height: '150px',
             margin: '20px',
           }} >
-            <Card className={classes.card} style={{backgroundColor: blue[500]}} onClick={props.addRestaurante}>
+            <Card className={classes.card} style={{backgroundColor: blue[500]}} onClick={props.addUsuario}>
               <CardActionArea style={{alignContent:'center', textAlign: 'center', color: 'white',}}>
                 <CardContent>
                   <AddBoxIcon fontSize="large" />

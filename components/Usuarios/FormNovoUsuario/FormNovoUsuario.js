@@ -23,6 +23,9 @@ const onSubmit = values => {
       nome: values.nome,
       username: values.usuario,
       email: values.email,
+      cpf: values.cpf,
+      telefone: telefonePrimario,
+      telefoneSecundario: telefoneSecundario,
     },
     InformacoesConta: {
       tipo: values.tipoConta,
@@ -116,7 +119,7 @@ const FormNovoUsuarios = ({handleSubmit, valid }) => {
               <Grid item xs={4}>
                 <Field
                   name='telefonePrimario'
-                  label='Telefone para Contato'
+                  label='Telefone'
                   component={renderInput}
                   validate={[phoneValidate]}
                 />
@@ -124,7 +127,7 @@ const FormNovoUsuarios = ({handleSubmit, valid }) => {
               <Grid item xs={4}>
                 <Field
                   name='telefoneSecundario'
-                  label='Telefone Celular'
+                  label='Telefone Secundário'
                   component={renderInput}
                   validate={[phoneValidate]}
                 />
@@ -139,7 +142,6 @@ const FormNovoUsuarios = ({handleSubmit, valid }) => {
               </Grid>
             </Grid>
           </div>
-
 
           <div style={{display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'right', paddingTop: '20px'}}>
             <FormControl>

@@ -3,10 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import {columns, rows} from "../Lista/Constants";
-
-import Lista from "../Lista/Lista";
-
+import Lista from "../../Usuarios/Lista/Lista";
 
 const useStyles = makeStyles({
   card: {
@@ -28,7 +25,7 @@ const useStyles = makeStyles({
 
 
 
-const ListaRestaurantes = (props) => {
+const ListaUsuários = (props) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return(
@@ -40,7 +37,7 @@ const ListaRestaurantes = (props) => {
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Lista de Restaurantes
+            Lista de Usuários
           </Typography>
         </CardContent>
         <CardContent>
@@ -51,4 +48,4 @@ const ListaRestaurantes = (props) => {
   )
 };
 
-export default ListaRestaurantes;
+export default ListaUsuários;

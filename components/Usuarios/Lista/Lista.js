@@ -17,10 +17,10 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from "@material-ui/core/TableHead";
 import Button from "@material-ui/core/Button";
 import {blue} from "@material-ui/core/colors";
-import axios from '../../axios-config';
-import {columns, rows} from './Constants';
+import axios from '../../../axios-config';
 import Router from 'next/router';
 
+import {rows} from "../ListaUsuarios/Constants";
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -101,14 +101,11 @@ const useStyles2 = makeStyles({
 
 const Lista = (props) => {
 
-  let listaRestaurantes = [];
 
-  //Pega dados do servidor
   const classes = useStyles2();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
@@ -120,12 +117,12 @@ const Lista = (props) => {
     setPage(0);
   };
 
-  const excluiLojaHandler = (id) => {
-    const param = '/lojas/' + id + '.json';
+  const excluiusuarioHandler = (id) => {
+    const param = '/usuarios/' + id + '.json';
     axios.patch(param, {inactive: true, deleted: true})
       .then(res => {
           console.log(res);
-          alert('Restaurante excluido com sucesso!')
+          alert('Usuário excluido com sucesso!')
           Router.reload();
         }
       )
@@ -154,15 +151,15 @@ const Lista = (props) => {
           {(rowsPerPage > 0
               ? props.linhas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : props.linhas
-          ).map(restaurante => (
-            <TableRow key={restaurante.id}>
+          ).map(usuarios => (
+            <TableRow key={usuarios.id}>
               <TableCell component="th" scope="row">
-                {restaurante.nome}
+                {usuarios.nome}
               </TableCell>
-              <TableCell align="right">{restaurante.id}</TableCell>
-              <TableCell align="right">{'Tester'}</TableCell>
+              <TableCell align="right">{usuarios.id}</TableCell>
+              <TableCell align="right">{usuarios.tipoConta}</TableCell>
               <TableCell align="right"><Button style={{color: blue[500]}}>ALTERAR</Button></TableCell>
-              <TableCell align="right"><Button style={{color: '#F33A21'}} onClick={(id) => excluiLojaHandler(restaurante.id)}>EXCLUIR</Button></TableCell>
+              <TableCell align="right"><Button style={{color: '#F33A21'}} onClick={(id) => excluiusuarioHandler(usuarios.id)}>EXCLUIR</Button></TableCell>
             </TableRow>
           ))}
 
@@ -197,7 +194,5 @@ const Lista = (props) => {
   );
 
 };
-const mapDispatchToProps = {
 
-};
 export default Lista;

@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
 import Router from 'next/router'
 import ConfiguracoesGerais from "../../components/usuarios/ConfiguracoesGerais/ConfiguracoesGerais";
-import {columns, createData} from '../../components/Lista/Constants'
+import ListaUsuários from "../../components/Usuarios/ListaUsuarios/ListaUsuarios";
+import {connect} from 'react-redux'
+
+import {columns, createData} from '../../components/Usuarios/ListaUsuarios/Constants'
+import * as actions from "../../redux/actions";
 
 
 class Usuarios extends Component {
+
+  componentDidMount() {
+    this.props.onFetchUsuarios();
+
+  }
 
   addUsuarioHandler = () => {
     Router.push('/usuarios/novo')
@@ -13,15 +22,30 @@ class Usuarios extends Component {
 
   render() {
     let rows = [];
-    columns.map(obj => {
-      rows.push(createData(obj.nome, obj.id, 'tester'))
+    this.props.usuarios.map(obj => {
+      rows.push(createData(obj.DadosCadastrais.nome, obj.id, obj.InformacoesConta.tipo))
     });
+    console.log(rows)
     return (
       <div>
-        <ConfiguracoesGerais addRestaurante={this.addUsuarioHandler}/>
+        <ConfiguracoesGerais addUsuario={this.addUsuarioHandler}/>
+        <ListaUsuários columns={columns} rows={rows}/>
       </div>
     )
   }
 }
 
-export default Usuarios;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchUsuarios: () => dispatch(actions.fetchUsuarios())
+  }
+};
+
+const mapStateToProps = state => {
+  return {
+    usuarios: state.usuario.usuarios,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Usuarios);
